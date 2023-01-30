@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+:root {
+    --very-dark-desaturated-blue: hsl(238, 29%, 16%);
+    --soft-red: hsl(14, 88%, 65%);
+
+    --soft-violet: hsl(273, 75%, 66%);
+    --soft-blue: hsl(240, 73%, 65%);
+
+    --very-dark-greyish-blue: hsl(237, 12%, 33%);
+    --dark-greyish-blue: hsl(240, 6%, 50%);
+
+    --light-greyish-blue: hsl(240, 5%, 91%);
+
+    --font-size : 0.7500em
+}
+
+*. *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    font-family: "Kumbh Sans", sans-serif;
+    font-size: var(--font-size);
+}
+
+body {
+    background: linear-gradient(180deg, var(--soft-violet), var(--soft-blue)) no-repeat center/cover; 
+    color: var(--very-dark-desaturated-blue);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion-card {
+    max-width: 700px;
+    background: #FFFFFF;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.accordion-card__img {
+    position: relative;
+    height: 100px;
+    width: 90%;
+    margin: auto;
+}
+
+.img__illustration {
+    position: absolute;
+    bottom: 40%;
+}
+
+.img__underlay {
+    position: absolute;
+    bottom: 10%;
+}
+
+.content__title {
+    text-align: center;
+}
+
+.questions__answers {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.questions__answers::after {
+    content: "";
+    width: 100%;
+    border-bottom: 1px solid var(--light-greyish-blue);
+    position: absolute;
+    bottom: -1rem;
+    z-index: 1;}
+
+.question__accordion {
+    background: #FFFFFF;
+    border: none;
+    color: var(--very-dark-greyish-blue);
+    padding: 1rem 0 0 0;
+    width: 100%;
+    text-align: left;
+}
+
+.question__accordion::after {
+    content: url(images/icon-arrow-down.svg);
+    float: right;
+    margin-left: 5px;
+    height: 1rem;
+    width: 1rem;
+    transition: transform 0.2s ease-in-out;
+
+}
+
+.question__accordion.active::after {
+    transform: rotate(180deg);
+}
+
+.question__accordion:hover {
+    color: var(--soft-red);
+    transition: all 0.3s ease-in;
+}
+
+.question__answer-panel {
+    color: var(--dark-greyish-blue);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in;
+}
+
+.active {
+    color: inherit;
+    transition: all 0.3 ease-in;
+}
+
+.floating-box {
+    display: none;
+    position: absolute;
+}
+
+@media only screen and (min-width: 320px) {
+    .wrapper {
+        margin: 0rem 1rem;
+    }
+
+    .accordion-card {
+        display: grid; 
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto 1fr; 
+        gap: 16px 0px; 
+        grid-template-areas: 
+        "image"
+        "content"; 
+    }
+
+    .accordion-card__img {
+        grid-area: image;
+    }
+
+    .accordion-card__content {
+        grid-area: content;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .wrapper {
+        margin: 0 15%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .wrapper {
+        margin: 0 10%;
+    }
+
+    .accordion-card {
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+        "image content"; 
+        padding: 0;
+    }
+
+    .accordion-card__img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .img__illustration {
+        bottom: 10%;
+        right: 15%;
+        z-index: 2;
+    }
+
+    .img__underlay {
+        bottom: 10%;
+        right: 50%;
+        transform: scale(1.75);
+        z-index: 1;
+    }
+
+    .floating-box {
+        display: block;
+        width: 12rem;
+        height: 12rem;
+        left: -6rem;
+        top: 50%;
+        margin-top: -3rem;
+        z-index: 999;
+    }
+
+    .accordion-card__content {
+        padding: 3rem;
+    }
+
+    .content__title {
+        text-align: left;
+    }
+}
